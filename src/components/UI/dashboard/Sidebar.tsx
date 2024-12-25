@@ -68,7 +68,7 @@ const Sidebar = () => {
             </Link>
           </li>
 
-          {/* recent view Products */}
+          {/* recent view project */}
           <li className="w-full mb-2">
             <Link href="/dashboard/projects?key=projects">
               <div
@@ -82,6 +82,24 @@ const Sidebar = () => {
                   <IoFastFood />
                 </span>
                 <span className="hidden md:inline-block ml-2">Projects</span>
+              </div>
+            </Link>
+          </li>
+
+          {/* recent view blogs */}
+          <li className="w-full mb-2">
+            <Link href="/dashboard/blogs?key=blogs">
+              <div
+                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
+                  queryValue === "blogs"
+                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
+                    : ""
+                }`}
+              >
+                <span className="material-icons md:hidden">
+                  <IoFastFood />
+                </span>
+                <span className="hidden md:inline-block ml-2">Blogs</span>
               </div>
             </Link>
           </li>

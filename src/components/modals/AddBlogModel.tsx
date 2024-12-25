@@ -4,14 +4,14 @@ import FXInput from "../form/FXInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import FXModal from "./FXModal";
-import { useUpdateProjectMutation } from "@/src/redux/features/project/projectApi";
+import { useCreateBlogMutation, useUpdateBlogMutation } from "@/src/redux/features/blog/blogApi";
 
-const UpdateProjectModal = ({ project }: { project: any }) => {
-  const [updateProject] = useUpdateProjectMutation();
+const AddBlogModal = () => {
+  const [createBlog] = useCreateBlogMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    const updatableData = { id: project._id, data };
-    const res = await updateProject(updatableData).unwrap();
+    data.readingTime = Number(data.readingTime)
+    const res = await createBlog(data).unwrap();
     if (res?.data) {
       toast.success(`${res?.message}`);
     }
@@ -21,8 +21,8 @@ const UpdateProjectModal = ({ project }: { project: any }) => {
     <div>
       {/* {isLoading && <Loading />} */}
       <FXModal
-        title="Update project"
-        buttonText="Update"
+        title="Add Blog"
+        buttonText="Add Blog"
         buttonClassName="px-2 py-1 bg-green-600 text-white rounded-md hover:bg-green-500 transition-all"
       >
         <FXForm onSubmit={onSubmit}>
@@ -30,54 +30,39 @@ const UpdateProjectModal = ({ project }: { project: any }) => {
             <FXInput
               label="Name"
               name="name"
-              defaultValue={project?.name}
+              required
+            ></FXInput>
+          </div>
+          <div className="py-1">
+            <FXInput
+              label="Title"
+              name="title"
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
               label="Description"
               name="description"
-              defaultValue={project?.description}
+              required
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
               label="Image"
               name="image"
-              defaultValue={project?.image}
+              required
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
-              label="Frontend live"
-              name="frLive"
-              defaultValue={project?.frLive}
-            ></FXInput>
-          </div>
-          <div className="py-1">
-            <FXInput
-              label="Backend live"
-              name="bcLive"
-              defaultValue={project?.bcLive}
-            ></FXInput>
-          </div>
-          <div className="py-1">
-            <FXInput
-              label="Frontend repository"
-              name="frRepo"
-              defaultValue={project?.frRepo}
-            ></FXInput>
-          </div>
-          <div className="py-1">
-            <FXInput
-              label="Backend repository"
-              name="bcRepo"
-              defaultValue={project?.bcRepo}
+              label="Reading Time"
+              name="readingTime"
+              required
             ></FXInput>
           </div>
           <div className="flex justify-center pt-2 w-full pb-2">
             <Button className="w-full" type="submit">
-              Update Project
+              Update Blog
             </Button>
           </div>
         </FXForm>
@@ -86,4 +71,4 @@ const UpdateProjectModal = ({ project }: { project: any }) => {
   );
 };
 
-export default UpdateProjectModal;
+export default AddBlogModal;

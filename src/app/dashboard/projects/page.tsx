@@ -27,7 +27,7 @@ const Projects = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, blocked!",
+      confirmButtonText: "Yes, deleted!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await deleteProject(id).unwrap();
@@ -39,21 +39,22 @@ const Projects = () => {
     });
   };
 
+  if (isLoading) {
+    return <div className="text-center py-10">Loading...</div>;
+  }
+
   if (error) {
     return <div>Error loading projects</div>;
   }
 
   return (
     <div className="p-4">
-      {isLoading && (
-        <div>
-          <Loading />
-        </div>
-      )}
+      <div className="flex justify-between items-center py-6">
       <h1 className="text-lg font-bold mb-4">Projects</h1>
       <button>
         <AddProjectModal />
       </button>
+      </div>
       <table className="table-auto border-collapse border border-gray-300 w-full">
         <thead>
           <tr>
