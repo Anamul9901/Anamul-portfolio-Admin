@@ -44,28 +44,11 @@ const NavberDropdown = () => {
             Profile
           </DropdownItem>
         ) : null} */}
-
-
-            <DropdownItem onClick={() => handleNavigation(`/shop/`)}>
-              Profile
-            </DropdownItem>
             <DropdownItem
               onClick={() => handleNavigation("/dashboard?key=dashboard")}
             >
               Dashboard
             </DropdownItem>
-     
-          <DropdownItem onClick={() => handleNavigation("/create-shop")}>
-            Create shop
-          </DropdownItem>
-
-        {userRole != "vendor" ? (
-          <DropdownItem
-            onClick={() => handleNavigation("/dashboard?key=dashboard")}
-          >
-            Dashboard
-          </DropdownItem>
-        ) : null}
 
         <DropdownItem
           onClick={() => handleLogOut()}
