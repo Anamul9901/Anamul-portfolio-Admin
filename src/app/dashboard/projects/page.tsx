@@ -1,16 +1,43 @@
 "use client";
 
+import AddProjectModal from "@/src/components/modals/AddProjectModel";
 import Loading from "@/src/components/UI/loading";
-import { useGetAllProjectQuery } from "@/src/redux/features/project/projectApi";
+import {
+  useDeleteProjectMutation,
+  useGetAllProjectQuery,
+} from "@/src/redux/features/project/projectApi";
 import Link from "next/link";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const Projects = () => {
+  const [deleteProject] = useDeleteProjectMutation();
   const {
     data: allProjects,
     isLoading,
     error,
   } = useGetAllProjectQuery(undefined);
   const projects = allProjects?.data;
+
+  const handleProjectDelete = async (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You can't revert this action!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, blocked!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await deleteProject(id).unwrap();
+        console.log("res", res);
+        if (res?.data) {
+          toast.success(`${res?.message}`);
+        }
+      }
+    });
+  };
 
   if (error) {
     return <div>Error loading projects</div>;
@@ -24,6 +51,9 @@ const Projects = () => {
         </div>
       )}
       <h1 className="text-lg font-bold mb-4">Projects</h1>
+      <button>
+        <AddProjectModal />
+      </button>
       <table className="table-auto border-collapse border border-gray-300 w-full">
         <thead>
           <tr>
@@ -72,7 +102,10 @@ const Projects = () => {
                 >
                   View
                 </Link>
-                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                <button
+                  onClick={() => handleProjectDelete(project._id)}
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                >
                   Delete
                 </button>
               </td>
