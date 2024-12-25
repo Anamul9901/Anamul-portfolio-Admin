@@ -70,10 +70,10 @@ const Sidebar = () => {
 
           {/* recent view Products */}
           <li className="w-full mb-2">
-            <Link href="/dashboard/recent-view-products?key=recent-view-products">
+            <Link href="/dashboard/projects?key=projects">
               <div
                 className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                  queryValue === "recent-view-products"
+                  queryValue === "projects"
                     ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
                     : ""
                 }`}
@@ -81,154 +81,10 @@ const Sidebar = () => {
                 <span className="material-icons md:hidden">
                   <IoFastFood />
                 </span>
-                <span className="hidden md:inline-block ml-2">Recent view</span>
+                <span className="hidden md:inline-block ml-2">Projects</span>
               </div>
             </Link>
           </li>
-
-          {/* Order history */}
-          <li className="w-full mb-2">
-            <Link href="/dashboard/order-history?key=order-history">
-              <div
-                className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                  queryValue === "order-history"
-                    ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                    : ""
-                }`}
-              >
-                <span className="material-icons md:hidden">
-                  <IoFastFood />
-                </span>
-                <span className="hidden md:inline-block ml-2">My Order</span>
-              </div>
-            </Link>
-          </li>
-
-          {currenttUserRole == "vendor" && (
-            <>
-              {/* Products */}
-              <li className="w-full mb-2">
-                <Link href="/dashboard/products?key=products">
-                  <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                      queryValue === "products"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                        : ""
-                    }`}
-                  >
-                    <span className="material-icons md:hidden">
-                      <IoFastFood />
-                    </span>
-                    <span className="hidden md:inline-block ml-2">
-                      Products
-                    </span>
-                  </div>
-                </Link>
-              </li>
-
-              {/* cupon */}
-              <li className="w-full mb-2">
-                <Link href="/dashboard/coupon?key=coupon">
-                  <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                      queryValue === "coupon"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                        : ""
-                    }`}
-                  >
-                    <span className="material-icons md:hidden">
-                      <IoFastFood />
-                    </span>
-                    <span className="hidden md:inline-block ml-2">Coupon</span>
-                  </div>
-                </Link>
-              </li>
-
-              {/* shop Order history */}
-              <li className="w-full mb-2">
-                <Link href="/dashboard/shop-order-history?key=shop-order-history">
-                  <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                      queryValue === "shop-order-history"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                        : ""
-                    }`}
-                  >
-                    <span className="material-icons md:hidden">
-                      <IoFastFood />
-                    </span>
-                    <span className="hidden md:inline-block ml-2">
-                      Shop Order History
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            </>
-          )}
-
-          {currenttUserRole == "admin" && (
-            <>
-              {/* all users */}
-              <li className="w-full mb-2">
-                <Link href="/dashboard/all-users?key=all-users">
-                  <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                      queryValue === "all-users"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                        : ""
-                    }`}
-                  >
-                    <span className="material-icons md:hidden">
-                      <MdSubscriptions />
-                    </span>
-                    <span className="hidden md:inline-block ml-2">
-                      All User
-                    </span>
-                  </div>
-                </Link>
-              </li>
-
-              {/* all shop */}
-              <li className="w-full mb-2">
-                <Link href="/dashboard/shops?key=shops">
-                  <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                      queryValue === "shops"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                        : ""
-                    }`}
-                  >
-                    <span className="material-icons md:hidden">
-                      <MdSubscriptions />
-                    </span>
-                    <span className="hidden md:inline-block ml-2">
-                      All Shop
-                    </span>
-                  </div>
-                </Link>
-              </li>
-
-              {/* category */}
-              <li className="w-full mb-2">
-                <Link href="/dashboard/category?key=category">
-                  <div
-                    className={`block px-2 py-4 text-white text-center md:text-left rounded-lg transition-all duration-300 hover:bg-purple-700 hover:shadow-xl ${
-                      queryValue === "category"
-                        ? "bg-purple-700 shadow-xl text-[#ff4a4afd] font-extrabold"
-                        : ""
-                    }`}
-                  >
-                    <span className="material-icons md:hidden">
-                      <MdSubscriptions />
-                    </span>
-                    <span className="hidden md:inline-block ml-2">
-                      Manage Category
-                    </span>
-                  </div>
-                </Link>
-              </li>
-            </>
-          )}
 
           <hr className="border-purple-500 w-full mb-4 opacity-40" />
 

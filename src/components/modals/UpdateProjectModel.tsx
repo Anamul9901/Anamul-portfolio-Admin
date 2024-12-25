@@ -1,23 +1,28 @@
 import { Button } from "@nextui-org/button";
 import FXForm from "../form/FXForm";
 import FXInput from "../form/FXInput";
-import Loading from "../UI/loading";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 import FXModal from "./FXModal";
+import { useUpdateProjectMutation } from "@/src/redux/features/project/projectApi";
 
-const UpdateProductModal = ({ product }: { product: any }) => {
+const UpdateProjectModal = ({ project }: { project: any }) => {
+  const [updateProject] = useUpdateProjectMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-   
+    const updatableData = { id: project._id, data };
+    const res = await updateProject(updatableData).unwrap();
+    if (res?.data) {
+      toast.success(`${res?.message}`);
+    }
   };
 
   return (
     <div>
       {/* {isLoading && <Loading />} */}
       <FXModal
-        title="Update Product"
-        buttonText="📝"
+        title="Update project"
+        buttonText="Update"
         buttonClassName="px-2 py-1 bg-green-600 text-white rounded-md hover:bg-green-500 transition-all"
       >
         <FXForm onSubmit={onSubmit}>
@@ -25,54 +30,59 @@ const UpdateProductModal = ({ product }: { product: any }) => {
             <FXInput
               label="Name"
               name="name"
-              defaultValue={product?.name}
+              defaultValue={project?.name}
               required
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
-              label="Title"
-              name="title"
-              defaultValue={product?.title}
+              label="Description"
+              name="description"
+              defaultValue={project?.description}
               required
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
-              label="Category"
-              name="category"
-              defaultValue={product?.category}
+              label="Image"
+              name="image"
+              defaultValue={project?.image}
               required
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
-              label="Price"
-              name="price"
-              type="number"
-              defaultValue={product?.price}
+              label="Frontend live"
+              name="frLive"
+              defaultValue={project?.frLive}
               required
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
-              label="Quantity"
-              name="inventoryCount"
-              type="number"
-              defaultValue={product?.inventoryCount}
+              label="Backend live"
+              name="bcLive"
+              defaultValue={project?.bcLive}
               required
             ></FXInput>
           </div>
           <div className="py-1">
             <FXInput
-              label="Images"
-              name="images"
-              defaultValue={product?.images}
+              label="Frontend repository"
+              name="frRepo"
+              defaultValue={project?.frRepo}
+            ></FXInput>
+          </div>
+          <div className="py-1">
+            <FXInput
+              label="Backend repository"
+              name="bcRepo"
+              defaultValue={project?.bcRepo}
             ></FXInput>
           </div>
           <div className="flex justify-center pt-2 w-full pb-2">
             <Button className="w-full" type="submit">
-              Add Product
+              Update Project
             </Button>
           </div>
         </FXForm>
@@ -81,4 +91,4 @@ const UpdateProductModal = ({ product }: { product: any }) => {
   );
 };
 
-export default UpdateProductModal;
+export default UpdateProjectModal;
