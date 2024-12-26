@@ -2,12 +2,10 @@
 
 import AddSkillModal from "@/src/components/modals/AddSkillModel";
 import UpdateSkillModal from "@/src/components/modals/UpdateSkillModel";
-import Loading from "@/src/components/UI/loading";
 import {
   useDeleteSkillMutation,
   useGetAllSkillQuery,
 } from "@/src/redux/features/skill/skillApi";
-import Link from "next/link";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
 

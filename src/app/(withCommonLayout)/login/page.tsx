@@ -36,7 +36,7 @@ const Login = () => {
       toast.success(`${res?.message}`);
       const { email, name, role } = res?.data;
       const finalUserData = { email, name, role };
-      dispatch(setUser({ user: finalUserData, token: res?.data?.accessToken }));
+      dispatch(setUser({ user: finalUserData, token: res?.token}));
       router?.push("/");
     }
   };
