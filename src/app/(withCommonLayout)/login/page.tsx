@@ -37,7 +37,7 @@ const Login = () => {
       const { email, name, role } = res?.data;
       const finalUserData = { email, name, role };
       dispatch(setUser({ user: finalUserData, token: res?.token}));
-      router?.push("/");
+      router?.push("/dashboard?key=dashboard");
     }
   };
 

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const HeroSection = () => {
   return (
     <section className="relative h-screen bg-gradient-to-br from-blue-900 via-black to-purple-900 flex items-center justify-center text-center overflow-hidden">
@@ -10,19 +12,19 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-6">
         <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 drop-shadow-lg mb-6">
-          Welcome to the Future
+          Welcome to Your Dashboard
         </h1>
         <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-          Step into a world of endless possibilities. Harness cutting-edge
-          technology to shape tomorrow, today.
+          Control your portfolio effortlessly. Manage everything in one place.
+          Simplify your portfolio experience.
         </p>
         <div className="flex justify-center space-x-6">
-          <button className="px-8 py-3 bg-cyan-500 text-black rounded-lg shadow-lg font-semibold hover:bg-cyan-400 hover:shadow-cyan-500/50 transition">
-            Learn More
-          </button>
-          <button className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg shadow-lg font-semibold hover:opacity-90 transition">
-            Get Started
-          </button>
+          <Link
+            href="/dashboard?key=dashboard"
+            className="px-8 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg shadow-lg font-semibold hover:opacity-90 transition"
+          >
+            Dashboard
+          </Link>
         </div>
       </div>
 

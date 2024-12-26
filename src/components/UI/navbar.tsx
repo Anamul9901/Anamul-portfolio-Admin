@@ -15,16 +15,19 @@ import { Logo } from "../icons";
 import { siteConfig } from "../../config/site";
 import { ThemeSwitch } from "../theme-switch";
 import NavberDropdown from "./dashboard/navberDropdown";
-import { HiMiniShoppingCart } from "react-icons/hi2";
 import clsx from "clsx";
 import { useAppSelector } from "@/src/redux/hooks";
 import { selectCurrentUser } from "@/src/redux/features/auth/authSlice";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
-  
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const { user } = useAppSelector(selectCurrentUser);
+  if(!user){
+    router.push('/login')
+  }
     // For hydration error handle
     useEffect(() => {
       setIsMounted(true);
@@ -64,9 +67,6 @@ export const Navbar = () => {
 
       <NavbarContent className=" basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="flex justify-center items-center gap-3">
-          <a href="/cart" className="rounded-full p-1">
-            <HiMiniShoppingCart className="text-xl text-gray-400" />
-          </a>
           <ThemeSwitch />
           <div>{user ? <NavberDropdown /> : 
           <a href="/login">
