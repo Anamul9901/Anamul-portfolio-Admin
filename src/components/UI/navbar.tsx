@@ -19,15 +19,11 @@ import clsx from "clsx";
 import { useAppSelector } from "@/src/redux/hooks";
 import { selectCurrentUser } from "@/src/redux/features/auth/authSlice";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
-  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
   const { user } = useAppSelector(selectCurrentUser);
-  if(!user){
-    router.push('/login')
-  }
+
     // For hydration error handle
     useEffect(() => {
       setIsMounted(true);

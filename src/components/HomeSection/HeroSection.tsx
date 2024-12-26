@@ -1,6 +1,15 @@
+'use client'
+import { selectCurrentUser } from "@/src/redux/features/auth/authSlice";
+import { useAppSelector } from "@/src/redux/hooks";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
+   const router = useRouter();
+    const { user } = useAppSelector(selectCurrentUser);
+    if(!user){
+      router.push('/login')
+    }
   return (
     <section className="relative h-screen bg-gradient-to-br from-blue-900 via-black to-purple-900 flex items-center justify-center text-center overflow-hidden">
       {/* Background Decoration */}
